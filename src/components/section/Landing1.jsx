@@ -15,7 +15,7 @@ function Landing1() {
               <li><a href="#" className="hover:text-blue-300">Leaderboard</a></li>
             </ul>
           </nav>
-          <button className="bg-white text-blue-600 px-4 py-2 rounded hover:bg-blue-50"><a href="/Signup">Sign up</a></button>
+          <button className="bg-white text-blue-600 px-4 py-2 rounded hover:bg-blue-50"><a href="./Signup">Sign up</a></button>
         </div>
       </header>
 

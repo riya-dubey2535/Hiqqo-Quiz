@@ -11,6 +11,7 @@ This project would not be possible without the amazing contributions of the foll
 - Vikas Rai          - Backend       - 7666763201    (Login/Signup/  Schema)    
 - Tinu Prajapati     - Backend       - 9971104085    
 - Shreekanth Yadav   - Backend       - 9768232457    (Middleware for Auth/ Schema)
+- Ranjeet Kumar      - Backend       - 6202215985    (Dashboard Api)
   
 - Neha Khan          - Frontend      - 7768868221    (Landing Page)
 - Karan Yadav        - Frontend      - 9321779811    (Authentication)

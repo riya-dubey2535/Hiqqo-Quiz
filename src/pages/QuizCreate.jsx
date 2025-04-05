@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 
 const QuizCreate = () => {
@@ -26,17 +27,25 @@ const QuizCreate = () => {
     }
   }, [quizData, currentQuestion, error.type]);
 
-  const handleNumQuestionsChange = (e) => {
-    const value = Number(e.target.value);
-    if (value >= 1 && value <= 100) {
-      setNumQuestions(value);
-      setQuizData(
-        Array.from({ length: value }, (_, i) =>
-          i < quizData.length
-            ? quizData[i]
-            : { question: "", options: ["", "", "", ""], answer: null }
-        )
-      );
+  const increaseQuestions = () => {
+    if (numQuestions < 100) {
+      const newNum = numQuestions + 1;
+      setNumQuestions(newNum);
+      setQuizData(prevData => [
+        ...prevData,
+        { question: "", options: ["", "", "", ""], answer: null }
+      ]);
+    }
+  };
+
+  const decreaseQuestions = () => {
+    if (numQuestions > 1) {
+      const newNum = numQuestions - 1;
+      setNumQuestions(newNum);
+      setQuizData(prevData => prevData.slice(0, newNum));
+      if (currentQuestion >= newNum) {
+        setCurrentQuestion(newNum - 1);
+      }
     }
   };
 
@@ -118,16 +127,29 @@ const QuizCreate = () => {
     <div className="min-h-screen bg-white flex flex-col items-center text-gray-800">
       <div className="mt-10 bg-gray-100 p-6 rounded-lg shadow-md max-w-4xl w-full">
         <h1 className="text-3xl font-bold text-center">Create a New Quiz</h1>
+        
+        {/* Number of Questions Control */}
         <div className="mt-6">
-          <label className="block text-xl font-semibold">Number of Questions</label>
-          <input
-            type="number"
-            value={numQuestions}
-            onChange={handleNumQuestionsChange}
-            min="1"
-            max="100"
-            className="w-full p-3 mt-2 rounded-lg text-gray-800 outline-none border border-gray-300"
-          />
+          <label className="block text-xl font-semibold mb-2">Number of Questions</label>
+          <div className="flex items-center">
+            <button
+              onClick={decreaseQuestions}
+              disabled={numQuestions <= 1}
+              className="bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
+            >
+              -
+            </button>
+            <div className="bg-white border border-gray-300 px-6 py-2 text-center font-semibold rounded-full mx-2">
+              {numQuestions}
+            </div>
+            <button
+              onClick={increaseQuestions}
+              disabled={numQuestions >= 100}
+              className="bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
+            >
+              +
+            </button>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6 mt-6">
@@ -194,7 +216,7 @@ const QuizCreate = () => {
               <button
                 type="button"
                 onClick={handleNext}
-                className="bg-gray-800 px-6 py-2 rounded-lg text-white font-semibold hover:bg-gray-700"
+                className="bg-indigo-600 px-6 py-2 rounded-lg text-white font-semibold hover:bg-indigo-700"
               >
                 Next
               </button>
@@ -219,5 +241,6 @@ const QuizCreate = () => {
     </div>
   );
 };
+
 
 export default QuizCreate;

@@ -11,7 +11,7 @@ function Dashboard() {
   const {page,setPage} = useContext(DataProvider)
 
   return (
-    <div className="flex">
+    <div className="flex h-screen w-full">
       <Sidebar onCreateQuiz={setIsModalOpen} />
       <div className="ml-64 w-full">
         <div className="p-5">

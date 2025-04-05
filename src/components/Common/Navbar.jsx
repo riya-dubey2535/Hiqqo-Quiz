@@ -8,14 +8,14 @@ function Navbar() {
   const headerRef = useRef(null);
   const location = useLocation();
   const { page, setPage } = useContext(DataProvider);
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const {token,setToken} = useContext(DataProvider)
   useEffect(() => {
     gsap.fromTo(
       headerRef.current,
       { y: -100 }, // Initial state
       { y: 0, duration: 0.8, ease: "power2.out" } // Final state
     );
-  }, []);
+  }, [token]);
  
   return (
     <header
@@ -28,7 +28,7 @@ function Navbar() {
             src="./Navbar/logo.png"
             className="w-[50px] animate-bounce"
             alt=""
-            srcset=""
+         
           />
           <h1 className="text-[40px] font-bold">
             Hi<span className="text-gray-200">qq</span>o

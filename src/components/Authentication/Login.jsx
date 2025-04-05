@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios"; // Import axios
 import api from "../../utils/axios";
 import { Link, useNavigate } from "react-router-dom";
+import { DataProvider } from "../../App";
 
-function Login() {
+function Login() {  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
+ const {token,setToken} = useContext(DataProvider)
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const nav = useNavigate();
 
@@ -39,6 +40,7 @@ function Login() {
 
       if (response.status === 200) {
         alert("Login successful! Redirecting to dashboard...");
+        setToken(response.data.token)
         nav("/dashboard");
       } else {
         setError(

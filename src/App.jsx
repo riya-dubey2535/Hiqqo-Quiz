@@ -18,9 +18,10 @@ export const DataProvider = createContext()
 function App() {
 
   const [page,setPage] = useState(0)
+  const [token,setToken] = useState(localStorage.getItem("token") || null)
 
   return (
-    <DataProvider.Provider value={{page,setPage}}>
+    <DataProvider.Provider value={{page,setPage,token,setToken}}>
     <BrowserRouter>
       <Navbar />
       <div className="my-20">

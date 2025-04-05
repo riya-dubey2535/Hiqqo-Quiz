@@ -17,7 +17,7 @@ const QuizTypeModal = ({ isOpen, onClose }) => {
       setError(""); // Clear error message if validation is successful
       try {
         const response = await api.post(
-          "/api/quiz/create-quiz",
+          "/quiz/create-quiz",
           { title: quizTitle, quizType:selectedQuizType },
           { headers: { "Content-Type": "application/json" } }
         );

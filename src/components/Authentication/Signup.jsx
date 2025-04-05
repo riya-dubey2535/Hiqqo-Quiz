@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios"; // Import axios
 import api from "../../utils/axios";
 import { Link, useNavigate } from "react-router-dom";
+import { DataProvider } from "../../App";
 
 function Signup() {
   const [username, setUsername] = useState("");
@@ -10,7 +11,7 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const nav = useNavigate();
-  
+   const {token,setToken} = useContext(DataProvider)
   // Password validation regex (min 8 chars, 1 uppercase, 1 special character, 1 number)
   const passwordRegex =
     /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -48,6 +49,7 @@ function Signup() {
         // Show success message
         alert("Signup successful! Redirecting to login...");
         localStorage.setItem("token", response.data.token);
+        setToken(response.data.token)
 
         // Redirect to login page
         nav("/login"); // This will redirect to the login page

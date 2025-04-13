@@ -57,10 +57,10 @@ function Login() {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    if (token) {
       nav("/dashboard");
     }
-  });
+  },[token,nav]);
   return (
     <div className="relative flex items-center justify-center bg-white min-h-screen  bg-cover bg-center">
       <motion.div
